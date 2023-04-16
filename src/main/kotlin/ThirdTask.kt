@@ -13,7 +13,7 @@ fun chainOperation (list: List<Double?>): Double {
 
 fun main() {
 
-    val myList = listOf(13.31, 3.98, 12.0, 2.99, 9.0)
+    val myList = listOf(13.31, 3.98, 12.0, 2.99, 9.0, null)
     println(chainOperation(myList))
     println("%.2f".format(chainOperation(myList)))
 
