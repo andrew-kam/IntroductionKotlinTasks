@@ -2,28 +2,36 @@ import java.time.LocalDate
 import java.time.Month
 import java.util.logging.Handler
 
-fun typeCasting(obj: Any?) {
-    when (obj) {
+
+fun typeSelection(inputObject: Any?) {
+
+    when (inputObject) {
+
         is String -> {
-            println("Я получил String = '$obj', ее длина равна ${obj.length}")
+            println("Я получил String = '$inputObject', ее длина равна ${inputObject.length}")
         }
+
         is Int -> {
-            println("Я получил Int = $obj, его квадрат равен ${obj * obj}")
+            println("Я получил Int = $inputObject, его квадрат равен ${inputObject * inputObject}")
         }
+
         is Double -> {
-            println("Я получил Double = $obj, это число округляется до ${
-                    "%.2f".format(obj).replace(Regex("\\.?0*$"), "")
+            println("Я получил Double = $inputObject, это число округляется до ${
+                    "%.2f".format(inputObject).replace(Regex("\\.?0*$"), "")
                 }")
         }
+
         is LocalDate -> {
             val tinkoffFoundationDate = LocalDate.of(2006, Month.DECEMBER, 24)
-            val comparisonResult = obj.isBefore(tinkoffFoundationDate)
-            println("Я получил LocalData = $obj," +
-                    " эта дата ${if (comparisonResult) "меньше" else "больше или равна"} чем дата основания Tinkoff")
+            println("Я получил LocalData = $inputObject," +
+                    " эта дата ${if (inputObject < tinkoffFoundationDate) "меньше"
+                    else "больше или равна"} чем дата основания Tinkoff")
         }
+
         null -> {
             println("Объект равен null")
         }
+
         else -> {
             println("Мне этот тип неизвестен")
         }
@@ -31,10 +39,11 @@ fun typeCasting(obj: Any?) {
 }
 
 fun main() {
-    typeCasting("Privet")
-    typeCasting(145)
-    typeCasting(145.0)
-    typeCasting(145.2817812)
-    typeCasting(LocalDate.of(1990,1,1))
-    typeCasting(Handler::class)
+    typeSelection("Privet")
+    typeSelection(145)
+    typeSelection(145.0)
+    typeSelection(145.2817812)
+    typeSelection(LocalDate.of(1990,1,1))
+    typeSelection(LocalDate.of(2006,12,24))
+    typeSelection(Handler::class)
 }
