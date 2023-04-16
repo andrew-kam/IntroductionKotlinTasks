@@ -1,10 +1,17 @@
-fun MutableList<Int>.squareAllElements() {
-    this.indices.forEach { this[it] = this[it] * this[it] }
-    }
+import kotlin.math.absoluteValue
 
-fun main() {
-    val mutableList = mutableListOf(1, 2, 3, 4)
-    println(mutableList)
-    mutableList.squareAllElements()
-    println(mutableList) // [1, 4, 9, 16]
+
+fun MutableList<Int>.squareAllElements() {
+
+    val minIntNumber = -2147483648
+    val maxValueElement = 46340
+
+    this.forEachIndexed { index: Int, value: Int ->
+
+        this[index] = value * value
+
+        if (value.absoluteValue > maxValueElement || value == minIntNumber) {
+            println("Переполнение типа Int на элементе $value, индекс - [$index]")
+        }
+    }
 }
