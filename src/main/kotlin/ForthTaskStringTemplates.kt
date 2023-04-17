@@ -1,68 +1,56 @@
-//fun numberName() {
-fun main() {
+fun numberName(inputNumber: Int) {
 
     val rangeInput = 1..1000
 
-    val ones = arrayOf(
+    val onesDigit = arrayOf(
         "", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"
     )
-    val special = arrayOf(
+    val specialDigit = arrayOf(
         "", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать",
         "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"
     )
-    val tens = arrayOf(
+    val tensDigit = arrayOf(
         "", "", "двадцать ", "тридцать ", "сорок ", "пятьдесят ",
         "шестьдесят ", "семьдесят ", "восемьдесят ", "девяносто "
     )
-    val hundreds = arrayOf(
+    val hundredsDigit = arrayOf(
         "", "сто ", "двести ", "триста ", "четыреста ", "пятьсот ",
         "шестьсот ", "семьсот ", "восемьсот ", "девятьсот "
     )
-    val thousands = arrayOf(
-        "", "одна тысяча "
-    )
-
-    val inputNumber = inputIntNumber(rangeInput)
 
     if (inputNumber !in rangeInput) {
-        println("Введены некорректные данные, работа программы завершена!")
+        println("Введены некорректные данные!")
+        return
+    }
+
+    if (inputNumber == 1000) {
+        println("одна тысяча")
         return
     }
 
     val digitsNumber = countDigits(inputNumber)
 
-    val outputWord = thousands[digitsNumber[0]] + hundreds[digitsNumber[1]] +
-            special[digitsNumber[2]] + tens[digitsNumber[3]] + ones[digitsNumber[4]]
+    val outputWord = hundredsDigit[digitsNumber[0]] + specialDigit[digitsNumber[1]] +
+            tensDigit[digitsNumber[2]] + onesDigit[digitsNumber[3]]
 
     print(outputWord.trim())
 }
 
-private fun inputIntNumber(rangeNumber: IntRange): Int {
 
-    println("Введите целое число в диапазоне [$rangeNumber]:")
-
-    return readlnOrNull()?.toIntOrNull() ?: 0
-}
-
-private fun countDigits(inputNumber: Int): List<Int>{
+private fun countDigits(inputNumber: Int): List<Int> {
 
     var number = inputNumber
 
     val digitsNumber = mutableListOf<Int>()
 
-    digitsNumber.add(number / 1000)
-    number %= 1000
     digitsNumber.add(number / 100)
     number %= 100
 
     if (number in 10..19) {
-        digitsNumber.add(number % 10 + 1)
-        digitsNumber.add(0)
-        digitsNumber.add(0)
+        digitsNumber.addAll(listOf(number % 10 + 1, 0, 0))
         return digitsNumber
     }
-    digitsNumber.add(0)
-    digitsNumber.add(number / 10)
-    digitsNumber.add(number % 10)
+
+    digitsNumber.addAll(listOf(0, number / 10, number % 10))
     return digitsNumber
 }
