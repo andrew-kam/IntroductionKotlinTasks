@@ -16,7 +16,11 @@ class FirstTaskTest {
             0, -2147479015, 2147395600, 625, 256, 81, 16, 1, 0, 1, 16, 81, 256, 625, 2147395600, -2147479015, 1
         )
 
-        assertEquals(message = "Squaring error!", actual = baseListInt, expected = modifiedListInt)
+        assertEquals(
+            message = "Squaring error!",
+            actual = baseListInt,
+            expected = modifiedListInt
+        )
     }
 
 
