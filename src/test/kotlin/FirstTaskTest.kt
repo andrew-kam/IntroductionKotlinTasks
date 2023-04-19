@@ -23,7 +23,6 @@ class FirstTaskTest {
         )
     }
 
-
     @Test
     fun testSquareAllElementsMessage() {
 
