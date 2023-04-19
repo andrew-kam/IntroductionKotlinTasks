@@ -1,6 +1,6 @@
 fun MutableList<Int>.squareAllElements() {
 
-    this.forEachIndexed { index: Int, value: Int ->
+    forEachIndexed { index: Int, value: Int ->
 
         this[index] = value * value
 
