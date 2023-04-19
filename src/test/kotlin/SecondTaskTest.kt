@@ -37,6 +37,7 @@ class SecondTaskTest {
     @ParameterizedTest
     @MethodSource("typeSelectionProvider")
     fun testTypeSelection(inputObject: Any?, expected: String) {
+
         assertEquals(
             message = "Output is wrong!",
             actual = captureOutput { typeSelection(inputObject) },
