@@ -30,10 +30,9 @@ class FirstTaskTest {
         val baseListInt = mutableListOf(-20, 0, 10, 46340, 46341)
 
         assertEquals(
-            message = "Message error",
+            message = "Message error!",
             actual = captureOutput { baseListInt.squareAllElements() },
             expected = "Переполнение типа Int на элементе 46341, индекс - [4]"
         )
-
     }
 }
