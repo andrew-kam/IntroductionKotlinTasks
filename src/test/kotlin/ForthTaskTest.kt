@@ -20,8 +20,8 @@ class ForthTaskTest {
     fun testNumberName(inputNumber: Int, expected: String) {
         assertEquals(
             message = "Output is wrong!",
-            expected = expected,
-            actual = captureOutput { numberName(inputNumber) }
+            actual = captureOutput { numberName(inputNumber) },
+            expected = expected
         )
     }
 }
